@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import {Clock, Weather, News, NewsTick} from "./AppComponents.js"
 import {UserHandler} from "./ApiComponents.js"
+import {Row, Column} from 'simple-flexbox'
 
 class App extends Component {
   constructor(props) {
@@ -19,8 +20,8 @@ class App extends Component {
   render() {
     const styles = {
       main: {
-        width: "600px",
-        height: "1000px",
+        width: "800px",
+        height: "1200px",
         color: "white",
         fontFamily: "Arial",
         fontSize: "18px",
@@ -36,16 +37,21 @@ class App extends Component {
     }
     return (
       <div className="App" style={styles.main}>
-        <div>{this.state.currentUser}</div>
-        <div style={styles.element}>
-          <UserHandler user={this.state.currentUser} loggedIn={this.state.loggedIn} handleUser={this.handleUser}/>
-        </div>
-        <div style={styles.element}><Clock /></div>
-        <div style={styles.element}><Weather /></div>
-        <React.Fragment>
-          <div style={styles.element}><NewsTick /></div>
-          <div style={styles.element}><News /></div>
-        </React.Fragment>
+      <Row>
+        <Column width="100px">
+          <div style={styles.element}>
+            <UserHandler user={this.state.currentUser} loggedIn={this.state.loggedIn} handleUser={this.handleUser}/>
+          </div>
+          <div style={styles.element}><Clock /></div>
+          <div style={styles.element}><Weather /></div>
+        </Column>
+        <Column width="600px">
+          <React.Fragment>
+            <div style={styles.element}><NewsTick /></div>
+            <div style={styles.element}><News /></div>
+          </React.Fragment>
+        </Column>
+      </Row>
       </div>
     )
   }

@@ -83,6 +83,15 @@ export class Weather extends Component {
     }
 
     render() {
+        const styles = {
+            button:{
+                color: "white",
+                backgroundColor: "grey",
+                padding: "3px",
+                margin: "3px",
+                fontSize: "15px"
+            }
+        }
         return (
         <div id="app-weather">
             <form onSubmit={this.handleSubmit}>
@@ -93,7 +102,7 @@ export class Weather extends Component {
                 defaultValue={this.state.zip}
                 onChange={this.handleZip}/>
             </label>
-            <button onClick={this.handleSubmit}>Search</button>
+            <button style={styles.button} onClick={this.handleSubmit}>Search</button>
             </form>
             <div>{this.state.msg}</div>
         </div>
@@ -233,7 +242,7 @@ export class News extends Component {
     render() {
         const styles = {
             main: {
-                height: "760px",
+                height: "800px",
                 transition: "height .5s"
             },
             mainInvis: {
@@ -248,7 +257,7 @@ export class News extends Component {
                 fontSize: "15px"
             },
             articles: {
-                height: "700px",
+                height: "730px",
                 overflow: "scroll",
                 overflowX: "hidden"
             }
@@ -347,6 +356,15 @@ export class NewsTick extends Component {
     tickArticles = () => {
         const time = new Date();
         const diff = (time - this.state.timer)/1000;
+        const styles = {
+            button: {
+                color: "white",
+                fontSize: "8px",
+                backgroundColor: "gray",
+                border: "none",
+                margin: "1px",
+            },
+        }
 
         if ( diff >= this.refreshRate || !this.state.articleSize ) {
             this.fetchArticles()
@@ -354,7 +372,8 @@ export class NewsTick extends Component {
         const newPos = this.state.articlePos >= this.state.articleSize? 0 : this.state.articlePos+1;
         const article = this.state.articles[newPos];
         const ticker = (
-            <div><a href={article.url} target="_blank">{article.title} - {article.source.name}</a></div>
+            <div><a href={article.url} target="_blank">{article.title} - {article.source.name}</a>
+            <button style={styles.button} onClick={this.handleReload}>reload</button></div>
         )
         this.setState({visible: true, displayedArticle: ticker, articlePos: newPos})
     }
@@ -379,24 +398,12 @@ export class NewsTick extends Component {
                 height: "45px",
                 transition: "height 2s"
             },
-            tickerHidden: {
-                fontSize: "15px",
-                height: "0px"
-            },
-            button: {
-                color: "white",
-                fontSize: "8px",
-                backgroundColor: "gray",
-                border: "none",
-                margin: "1px",
-            },
         }
-        const useStyle = this.state.visible ? styles.ticker : styles.tickerHidden;
         return (
-            <div id="app-newsTicker" style={useStyle}>
+            <div id="app-newsTicker" style={styles.ticker}>
                 <div>{this.state.displayedArticle?
                     this.state.displayedArticle : "Top US News ticker is starting.."}</div>
-                <div style={{textAlign:"right"}}><button style={styles.button} onClick={this.handleReload}>reload</button></div>
+                
             </div>
         )
     }
