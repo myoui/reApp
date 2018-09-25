@@ -1,0 +1,17 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.ticker {
+  color: blue;
+  height: 35px;
+  transition: height 3s
+}
+
+.tickerHidden {
+  color: red;
+  height: 0px;
+  transition: height 3s
+}

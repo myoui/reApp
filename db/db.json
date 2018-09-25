@@ -1,0 +1,21 @@
+{
+    "allowedAPIKeys": [
+        "apikey1", "apikey2"
+    ],
+
+    "posts": [
+        {
+            "id":0,
+            "username":"admin",
+            "body":"first post",
+            "time":null
+        }
+    ],
+
+    "users": {
+        "admin": {
+            "exists": true,
+            "password":"123"
+        }
+    }
+}
