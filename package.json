@@ -7,7 +7,6 @@
     "react": "^16.5.1",
     "react-dom": "^16.5.1",
     "react-scripts": "1.1.5",
-    "react-scroll-to-component": "^1.0.2",
     "simple-flexbox": "^1.2.0"
   },
   "scripts": {
@@ -19,6 +18,7 @@
     "deploy": "gh-pages -d build"
   },
   "devDependencies": {
-    "gh-pages": "^2.0.0"
+    "gh-pages": "^2.0.0",
+    "json-schema-faker": "^0.5.0-rc15"
   }
 }

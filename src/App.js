@@ -21,7 +21,7 @@ class App extends Component {
     const styles = {
       main: {
         width: "800px",
-        height: "1200px",
+        // height: "1200px",
         color: "white",
         fontFamily: "Arial",
         fontSize: "18px",

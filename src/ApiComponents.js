@@ -21,7 +21,6 @@ export class UserHandler extends Component {
             if (json[this.state.username].exists && 
                 json[this.state.username].password === this.state.password) {
                     this.props.handleUser(this.state.username, true).bind(this);
-                    alert("Logged In!")
                 } else {
                     this.setState({password: ""});
                     alert("Wrong username and/or password.")
@@ -32,11 +31,14 @@ export class UserHandler extends Component {
     handleLogout = () => {
         this.setState({password: ""});
         this.props.handleUser("guest", false)
-
     }
 
     render() {
-        if (this.props.loggedIn) {
+        if (window.location.href !== "http://localhost:3000/") {
+            return (
+                <div>Login Disabled for this URL.</div>
+            )
+        }else if (this.props.loggedIn) {
             return (
                 <div>
                     Logged in as {this.props.user}<br/>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+
 export class Clock extends Component {
     constructor(props) {
       super(props);
@@ -207,7 +208,7 @@ export class News extends Component {
         }
         if (json.status === "ok") {
             const articleList = json.articles.map((item,index)=>
-                <div id={"article_"+index} style={styles.main}>
+                <div key={"article_"+index} style={styles.main}>
                     <h4><a href={item.url} target="_blank">{item.title}</a></h4>
                     {item.urlToImage? <img
                         style={styles} 
@@ -219,9 +220,6 @@ export class News extends Component {
                     <div style={{fontSize:"10px", textAlign:"right"}}>Published: {new Date(item.publishedAt).toLocaleString()}</div>
                 </div>
                 );
-            articleList.unshift(
-                <div ref={this.topOfNews}>topOfNews</div>
-            )
             this.setState({articlesJson: json.articles, visibie: true, articles: articleList, status:json.status, time: new Date().toLocaleTimeString()});
         } else {
             this.setState({visible: true, status: json.status, error: json.message, time: new Date().toLocaleTimeString()})
@@ -243,10 +241,12 @@ export class News extends Component {
         const styles = {
             main: {
                 height: "800px",
+                width: "550px",
                 transition: "height .5s"
             },
             mainInvis: {
                 height: "0px",
+                width: "550px",
                 transition: "height .5s"
             },
             dropdown: {
